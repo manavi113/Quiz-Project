@@ -18,7 +18,7 @@ export const Quiz = ({name}) =>{
 const[userans, setans] = useState([]);
 const [quesindex, setindex] = useState(0);
     const[quizstarts, setquiz] = useState(false);
-    const[timeleft, settimeleft] = useState(30);
+    const[timeleft, settimeleft] = useState(60);
     const[scorecard, setscorecard] = useState(false);
     const[score, setscore] = useState(0);
     
@@ -40,11 +40,12 @@ const [quesindex, setindex] = useState(0);
 
       });
       setscore(newscore);
+      return score
     }
 
       const letstart=()=>{
         setquiz(true);
-        settimeleft(30);
+        settimeleft(60);
         setscorecard(false);
         setindex(0);
         setans(Array(questions.length).fill(null));
