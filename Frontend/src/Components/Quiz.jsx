@@ -18,7 +18,7 @@ export const Quiz = ({name}) =>{
 const[userans, setans] = useState([]);
 const [quesindex, setindex] = useState(0);
     const[quizstarts, setquiz] = useState(false);
-    const[timeleft, settimeleft] = useState(60);
+    const[timeleft, settimeleft] = useState(70);
     const[scorecard, setscorecard] = useState(false);
     const[score, setscore] = useState(0);
     
@@ -45,7 +45,7 @@ const [quesindex, setindex] = useState(0);
 
       const letstart=()=>{
         setquiz(true);
-        settimeleft(60);
+        settimeleft(70);
         setscorecard(false);
         setindex(0);
         setans(Array(questions.length).fill(null));
@@ -95,10 +95,7 @@ const [quesindex, setindex] = useState(0);
               <>
              
             <div className="head">
-             <div className="title">
-             {/* <h1>Quiz-Center</h1> */}
-             {/* <i className="fa-solid fa-question"></i> */}
-             </div>
+            
         <h1>Let's Test Your Knowledge!</h1>
         </div>
         <div className="info">
@@ -155,8 +152,8 @@ const [quesindex, setindex] = useState(0);
           { (quizstarts && !scorecard) && (
             <div>
             <h4 className='time'>TIMER:{timeleft} seconds</h4>
-            <button onClick={nextques}>Next-Question</button>
-            <button onClick={SubmitHandle}>SUBMIT</button>
+            <button className='next ques' onClick={nextques}>Next-Question</button>
+            <button className='sum' onClick={SubmitHandle}>SUBMIT</button>
             </div>  
           )}
           </> 
