@@ -77,7 +77,8 @@
      
      }
      .image{
-      top: 10px;
+      margin-top: 16px;
+      margin-bottom: 16px;
      }
      .image img{
       /* margin-right: 10px; */
@@ -88,6 +89,8 @@
      .info img{
       width: 10%;
       height: 10%;
+      margin-top: 24px;
+      margin-bottom: 24px;
      }
      .intro{
       display: flex;

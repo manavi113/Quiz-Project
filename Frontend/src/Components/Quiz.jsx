@@ -129,7 +129,7 @@ const [quesindex, setindex] = useState(0);
        ( <button className="start" onClick={letstart}><b>Get Started!!</b></button>)}
 
 <div>
-{questions[quesindex] && (
+{questions[quesindex] && quizstarts && (
             <div>
               <h2 className='question'>{questions[quesindex].question}</h2>
               {questions[quesindex].choices.map(choice => (
