@@ -9,7 +9,7 @@ export const Home = ({startQuiz}) =>{
       }
     }
      return(
-    
+         
 <div className='container'>
 <h1>Welcome to quiz Center</h1>
 <div className='image'>
