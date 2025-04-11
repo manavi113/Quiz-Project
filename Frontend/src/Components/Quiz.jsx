@@ -168,6 +168,161 @@
 //     )
 // }
 
+
+
+
+
+// *******************CODE WHICH IS WORKING FINE ******************************************
+
+// import { useEffect, useState } from 'react';
+// import '../Quiz.css';
+// import { ScoreCard } from './ScoreCard';
+
+// export const Quiz = ({ name }) => {
+//     const [questions, setQuestions] = useState([]);
+//     const [userans, setUserans] = useState([]);
+//     const [quesIndex, setQuesIndex] = useState(0);
+//     const [quizStarts, setQuizStarts] = useState(false);
+//     const [timeLeft, setTimeLeft] = useState(70);
+//     const [scoreCard, setScoreCard] = useState(false);
+//     const [score, setScore] = useState(0);
+
+//     useEffect(() => {
+//         fetch('http://localhost:7000/api/question')
+//             .then(response => response.json())
+//             .then(data => {
+//                 setQuestions(data);
+//                 setUserans(Array(data.length).fill(null));
+//             })
+//             .catch(error => console.error('Error fetching questions:', error));
+//     }, []);
+
+//     const calculateScore = () => {
+//         let newScore = 0;
+//         userans.forEach((ans, index) => {
+//             if (ans === questions[index].correctAnswer) {
+//                 newScore += 1;
+//             }
+//         });
+//         setScore(newScore);
+//         return newScore; 
+//     };
+
+//     const startQuiz = () => {
+//         setQuizStarts(true);
+//         setTimeLeft(70);
+//         setScoreCard(false);
+//         setQuesIndex(0);
+//         setUserans(Array(questions.length).fill(null));
+//         setScore(0);
+//     };
+
+//     useEffect(() => {
+//         let timer;
+//         if (quizStarts && timeLeft > 0) {
+//             timer = setInterval(() => {
+//                 setTimeLeft(prevTime => prevTime - 1);
+//             }, 1000);
+//         } else {
+//             if (timeLeft === 0) {
+//                 setQuizStarts(false);
+//                 setScoreCard(true);
+//                 calculateScore();  
+//             }
+//         }
+//         return () => clearInterval(timer);
+//     }, [quizStarts, timeLeft]);
+
+//     const handleSubmit = () => {
+//         setQuizStarts(false);
+//         setScoreCard(true);
+//         calculateScore();
+//     };
+
+//     const handleAnswerChange = (e) => {
+//         const newAns = [...userans];
+//         newAns[quesIndex] = e.target.value;
+//         setUserans(newAns);
+//     };
+
+//     const nextQuestion = () => {
+//         if (quesIndex < questions.length - 1) {
+//             setQuesIndex(prev => prev + 1);
+//         } else {
+//             handleSubmit();  
+//         }
+//     };
+
+
+     
+    
+      
+//     return (
+//         <div>
+//             {!scoreCard && (
+//                 <>
+//                     <div className="head">
+//                         <h1>Let's Test Your Knowledge!</h1>
+//                     </div>
+//                     <div className="info">
+//                         <p>NAME: {name}</p>
+//                     </div>
+//                     <div className='Rules'>
+//                         <ul>
+//                             <li><h5>Test will be of 10 marks</h5></li>
+//                             <li><h5>There will be Total 10 MCQs Questions</h5></li>
+//                             <li><h5>You will be given 60 seconds for the test</h5></li>
+//                             <li><h5>There is no Negative marking</h5></li>
+//                             <li><h5>You will be Awarded 1 mark for correct answers and 0 for wrong answers</h5></li>
+//                             <li><h5>There is only one correct answer for each question</h5></li>
+//                         </ul>
+//                     </div>
+
+//                     {!quizStarts && !scoreCard && (
+//                         <button className="start" onClick={startQuiz}><b>Get Started!!</b></button>
+//                     )}
+
+//                     <div>
+//                         {questions[quesIndex] && quizStarts && (
+//                             <div>
+//                                 <h2 className='question'>{questions[quesIndex].question}</h2>
+//                                 {questions[quesIndex].choices.map(choice => (
+//                                     <div key={choice} className='choices'>
+//                                         <input
+//                                             type="radio"
+//                                             name="answer"
+//                                             value={choice.charAt(0)}  
+//                                             onChange={handleAnswerChange}
+//                                         />
+//                                         <label>{choice}</label>
+//                                     </div>
+//                                 ))}
+//                             </div>
+//                         )}
+//                     </div>
+
+//                     {quizStarts && !scoreCard && (
+//                         <div>
+//                             <h4 className='time'>TIMER: {timeLeft} seconds</h4>
+//                             <button className='next ques' onClick={nextQuestion}>Next Question</button>
+//                             <button className='sum' onClick={handleSubmit}>SUBMIT</button>
+//                         </div>
+//                     )}
+//                 </>
+//             )}
+//             {scoreCard && <ScoreCard name={name} score={score} />}
+//         </div>
+//     );
+// };
+
+
+
+
+// *******************CODE WHICH IS WORKING FINE ******************************************
+
+
+
+
 import { useEffect, useState } from 'react';
 import '../Quiz.css';
 import { ScoreCard } from './ScoreCard';
@@ -180,6 +335,10 @@ export const Quiz = ({ name }) => {
     const [timeLeft, setTimeLeft] = useState(70);
     const [scoreCard, setScoreCard] = useState(false);
     const [score, setScore] = useState(0);
+    const [usedFifty, setUsedFifty] = useState(false);
+const [hiddenOptions, setHiddenOptions] = useState([]);
+const [skippedQuestions, setSkippedQuestions] = useState([]);
+
 
     useEffect(() => {
         fetch('http://localhost:7000/api/question')
@@ -199,7 +358,7 @@ export const Quiz = ({ name }) => {
             }
         });
         setScore(newScore);
-        return newScore; // Return the new score if needed elsewhere
+        return newScore; 
     };
 
     const startQuiz = () => {
@@ -221,7 +380,7 @@ export const Quiz = ({ name }) => {
             if (timeLeft === 0) {
                 setQuizStarts(false);
                 setScoreCard(true);
-                calculateScore(); // Calculate score when time is up
+                calculateScore();  
             }
         }
         return () => clearInterval(timer);
@@ -233,20 +392,63 @@ export const Quiz = ({ name }) => {
         calculateScore();
     };
 
+
+    const useFiftyFifty = () => {
+        if (usedFifty || !questions[quesIndex]) return;
+    
+        const currentQuestion = questions[quesIndex];
+        const correct = currentQuestion.correctAnswer;
+        const choices = currentQuestion.choices;
+    
+       
+        const incorrectChoices = choices.filter(choice => choice.charAt(0) !== correct);
+    
+        
+        const choicesToHide = incorrectChoices
+            .sort(() => 0.5 - Math.random())  
+            .slice(0, 2)
+            .map(choice => choice.charAt(0));  
+    
+        setHiddenOptions(choicesToHide);
+        setUsedFifty(true);
+    };
+    
+    
+    useEffect(() => {
+        setHiddenOptions([]);     
+        setUsedFifty(false);       
+      }, [quesIndex]);
+
+
+    const skipQuestion = () => {
+        setSkippedQuestions([...skippedQuestions, quesIndex]);
+        if (quesIndex < questions.length - 1) {
+            setQuesIndex(quesIndex + 1);
+        }
+    };
+    
+
+
+
     const handleAnswerChange = (e) => {
         const newAns = [...userans];
         newAns[quesIndex] = e.target.value;
         setUserans(newAns);
     };
+    const isOptionHidden = (option) => hiddenOptions.includes(option);
 
     const nextQuestion = () => {
         if (quesIndex < questions.length - 1) {
             setQuesIndex(prev => prev + 1);
         } else {
-            handleSubmit(); // If it's the last question, submit directly
+            handleSubmit();  
         }
     };
 
+
+     
+    
+      
     return (
         <div>
             {!scoreCard && (
@@ -273,21 +475,28 @@ export const Quiz = ({ name }) => {
                     )}
 
                     <div>
-                        {questions[quesIndex] && quizStarts && (
-                            <div>
-                                <h2 className='question'>{questions[quesIndex].question}</h2>
-                                {questions[quesIndex].choices.map(choice => (
-                                    <div key={choice} className='choices'>
-                                        <input
-                                            type="radio"
-                                            name="answer"
-                                            value={choice.charAt(0)} // Ensure this matches with correctAnswer format
-                                            onChange={handleAnswerChange}
-                                        />
-                                        <label>{choice}</label>
-                                    </div>
-                                ))}
-                            </div>
+                    {questions[quesIndex] && quizStarts && (
+    <div>
+        <h2 className='question'>{questions[quesIndex].question}</h2>
+        {questions[quesIndex]?.choices?.map((choice, idx) => {
+            const optionKey = choice.charAt(0); // like 'A'
+            if (isOptionHidden(optionKey)) return null;
+
+            return (
+                <div key={choice} className='choices'>
+                    <input
+                        type="radio"
+                        name={`question-${quesIndex}`}
+                        value={optionKey}
+                        checked={userans[quesIndex] === optionKey}
+                        onChange={handleAnswerChange}
+                    />
+                    <label>{choice}</label>
+                </div>
+            );
+        })}
+     
+      </div>
                         )}
                     </div>
 
@@ -296,6 +505,9 @@ export const Quiz = ({ name }) => {
                             <h4 className='time'>TIMER: {timeLeft} seconds</h4>
                             <button className='next ques' onClick={nextQuestion}>Next Question</button>
                             <button className='sum' onClick={handleSubmit}>SUBMIT</button>
+                            <button onClick={useFiftyFifty} disabled={usedFifty}>50:50</button>
+                              <button onClick={skipQuestion}>Skip</button>
+
                         </div>
                     )}
                 </>
@@ -304,3 +516,11 @@ export const Quiz = ({ name }) => {
         </div>
     );
 };
+
+
+
+
+
+
+
+ 

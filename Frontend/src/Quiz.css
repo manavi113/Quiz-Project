@@ -43,11 +43,7 @@ body{
         display: flex;
         text-align: center;
        }
-       /* .title i{
-        margin-top: 35px;
-        margin-left: 20px;
-        font-size: 39px;
-       } */
+        
        .Rules{
         border: 7px solid red;
         margin-top: 20px;
@@ -86,3 +82,33 @@ body{
        .sum{
         margin-bottom: 10px;
        }
+
+
+
+
+       .quiz-controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      
+      .lifeline-btn,
+      .skip-btn,
+      .next-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: none;
+        background-color: #0077cc;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .lifeline-btn:hover,
+      .skip-btn:hover,
+      .next-btn:hover {
+        background-color: #005fa3;
+      }
+      

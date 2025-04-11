@@ -22,10 +22,10 @@ export const Home = ({startQuiz}) =>{
             <h4>Enter Your Name</h4>
             <input type="text" onChange={(e) => setname(e.target.value)} value={name}/>
             <h4>Enter Your Preffered Topic For Quiz</h4>
-            {/* <input type="text" /> */}
+           
             <select>
                 <option>General Knowledge</option>
-                {/* <option>Geography</option> */}
+            
             </select>
             <button type='submit'>Start Quiz</button>
         </form>

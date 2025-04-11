@@ -36,24 +36,53 @@ body{
   .score-container {
     background-color: black;
     border: 5px solid white;
-    width: 300px;
-    height: 200px;
+    box-shadow: 0 0 20px white;
+    width: 400px;
+    height: 450px;
     color: white;
-    margin-top: 25%;
-    padding: 30px;
+    margin-top: 10%;
+    padding: 10px;
   }
   .name{
-    font-size: large;
+    font-size: 2rem;
     font-weight: 700;
   }
   .topic {
     text-align: center;
-    font-size: larger;
+    font-size: 2.3rem;
     font-weight: 700;
   }
   .score-container h4 {
     padding: 10px;
   }
   .score-container h2 {
-    padding: 40px;
+    padding: 10px;
+  }
+
+
+  .progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    margin-top: 10px;
+    height: 20px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 7s ease-in-out;
+  }
+  
+
+
+  .did-you-know{ 
+color: whitesmoke;
+margin-top: 1rem;
+  }
+
+
+
+  .did-you-know h4{
+     font-size: 1.5rem;
   }
