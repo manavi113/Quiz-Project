@@ -34,11 +34,11 @@ app.use(express.json());
 
  
 app.use('/api/question', questionRoutes);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public', 'dist')));
 
-// For all GET requests, send back React's index.html file.
+// React/SPA ke liye fallback route
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'dist', 'index.html'));
 });
 
 
