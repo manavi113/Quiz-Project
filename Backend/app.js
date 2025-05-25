@@ -36,7 +36,7 @@ app.use(express.json());
 app.use('/api/question', questionRoutes);
 app.use(express.static(path.join(__dirname, 'public', 'dist')));
 
-// React/SPA ke liye fallback route
+// For all other routes, serve the index.html from 'public/dist'
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dist', 'index.html'));
 });
