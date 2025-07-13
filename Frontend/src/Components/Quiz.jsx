@@ -342,7 +342,8 @@ const [skippedQuestions, setSkippedQuestions] = useState([]);
 
     useEffect(() => {
         // fetch('http://localhost:7000/api/question')
-        fetch('https://quiz-project-2-hv18.onrender.com/api/question')
+        fetch('https://quiz-project-1-oool.onrender.com/api/question')
+
 
             .then(response => response.json())
             .then(data => {
