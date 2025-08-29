@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 export const Home = ({startQuiz}) =>{
     const[name, setname] = useState('');
@@ -8,6 +8,21 @@ export const Home = ({startQuiz}) =>{
         startQuiz(name);
       }
     }
+
+
+
+
+     useEffect(() => {
+    const wakeServer = async () => {
+      try {
+        await axios.get('https://quiz-project-1-oool.onrender.com/api/question');
+        console.log('Server is awake!');
+      } catch (err) {
+        console.log('Error waking server', err);
+      }
+    };
+    wakeServer();
+  }, []);
      return(
          
 <div className='container'>
